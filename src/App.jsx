@@ -17,8 +17,8 @@ function App() {
                 </a>
                 <ul className="dropdown-menu">
                   <li><NavLink to="datos/productos" className="nav-link">Productos</NavLink></li>
-                  {/* <li><NavLink to="datos/motos" className="nav-link">Motos</NavLink></li>
-                  <li><NavLink to="datos/bicicletas" className="nav-link">Bicicletas</NavLink></li> */}
+                  <li><NavLink to="datos/clientes" className="nav-link">Clientes</NavLink></li>
+                  <li><NavLink to="datos/proveedores" className="nav-link">Proveedores</NavLink></li>
                 </ul>
               </li>
               
@@ -33,8 +33,8 @@ function App() {
 
       <footer className="fixed-bottom w-100 mt-5 p-3 bg-light">
         <div className="d-flex align-items-center justify-content-between">
-          <Link to="/" className="fs-5">La Estacion-Web</Link>
-          <div className="fs-5">@Mirko-Kauffman 2023</div>
+          <Link to="/" className="fs-5">La EstacionWeb</Link>
+          <div className="fs-5">Mirko-Kauffman 2023</div>
         </div>
       </footer>
     </>

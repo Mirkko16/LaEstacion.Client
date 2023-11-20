@@ -1,123 +1,123 @@
 {
-    "clientes": [
-        {
-            "id": 1,
-            "nombre": "Martin",
-            "apellido": "Arevalos",
-            "cuit": "11-12224465-4",
-            "direccion": "Las heras 2344",
-            "telefono": "4880-115",
-            "cuenta-corriente": false,
-            "saldo": 0.0
-        },
-        {
-            "id": 2,
-            "nombre": "Matias",
-            "apellido": "Rodriguez",
-            "cuit": "11-85245678-4",
-            "direccion": "Uruguay 278",
-            "telefono": "343-6229875",
-            "cuenta-corriente": true,
-            "saldo": 156.23
-        },
-        {
-            "id": 3,
-            "nombre": "Mateo",
-            "apellido": "Rodriguez",
-            "cuit": "10-85245678-3",
-            "direccion": "Moreno 278",
-            "telefono": "343-6209872",
-            "cuenta-corriente": true,
-            "saldo": 1225.56
-        }
-    ],
-    "proveedores": [
-        {
-            "id": 1,
-            "nombre": "CELESTE Y BLANCA",
-            "apellido": "-",
-            "cuit": "45-85245678-3",
-            "correo": "johnDoe@gmail.com",
-            "rubro": "Libreria",
-            "ctaCorriente": true,
-            "saldoEnCta": 155226.95
-        },
-        {
-            "id": 2,
-            "nombre": "RUBEN",
-            "apellido": "LENCINA",
-            "cuit": "45-85245678-3",
-            "correo": "johnDoe@gmail.com",
-            "rubro": "Bazar",
-            "ctaCorriente": false,
-            "saldoEnCta": 0.0
-        },
-        {
-            "id": 3,
-            "nombre": "BAUTISTA",
-            "apellido": "FERNANDEZ",
-            "cuit": "45-85245678-3",
-            "correo": "johnDoe@gmail.com",
-            "rubro": "Jugueteria",
-            "ctaCorriente": true,
-            "saldoEnCta": 77754.23
-        }
-    ],
-    "productos": [
-        {
-            "id": 1,
-            "codBarra": "564545645654",
-            "nombre": "Lapiz",
-            "marca": "FaberCastell",
-            "rubro": "Libreria",
-            "idProveedor": 1,
-            "costo": 150.00,
-            "precio": 325.00,
-            "unidad": "C/U",
-            "stock": 50
-        },
-        {
-            "id": 2,
-            "codBarra": "5454587218574",
-            "nombre": "Cuaderno",
-            "marca": "Exito",
-            "rubro": "Libreria",
-            "idProveedor": 2,
-            "costo": 1225.50,
-            "precio": 1855.9,
-            "unidad": "C/U",
-            "stock": 30
-        },
-        {
-            "id": 3,
-            "codBarra": "1546788978977",
-            "nombre": "Goma",
-            "marca": "Maped",
-            "rubro": "Libreria",
-            "idProveedor": 3,
-            "costo": 25.00,
-            "precio": 50.00,
-            "unidad": "C/U",
-            "stock": 150
-        }
-    ],
-    "venta": [
-        {
-            "punto-venta": 1,
-            "num-comprobante": "564545645654",
-            "fecha-emision": "15/11/2023",
-            "ingresos-brutos": "23-39577924-9",
-            "inicio-actividades": "01/05/2023",
-            "dom-comercial": "Mariano Moreno 78",
-            "cond-iva": "Responsable Monotributo"        
-        }
-    ],
-    "hist-venta": [
-        {
-            "num-comprobante": "000-001",
-            "fecha-emision": "20/11/2023",
-            "total": 14255.26,
-            "metodo-pago": "CONTADO"
-        }
-    ]
+  "clientes": [
+    {
+      "id": 1,
+      "nombre": "Matias",
+      "apellido": "Rodriguez",
+      "cuit": "11-85245678-4",
+      "direccion": "Uruguay 278",
+      "telefono": "343-6229875",
+      "cuentaCorriente": "SI",
+      "saldo": 156.23
+    },
+    {
+      "id": 2,
+      "nombre": "Matias",
+      "apellido": "Ramirez",
+      "cuit": "11-85245678-4",
+      "direccion": "Uruguay 278",
+      "telefono": "343-6229875",
+      "cuentaCorriente": "NO",
+      "saldo": 156.23
+    },
+    {
+      "id": 3,
+      "nombre": "Mateo",
+      "apellido": "Gomez",
+      "cuit": "10-85245678-3",
+      "direccion": "Morenasdo 278",
+      "telefono": "343-6209872",
+      "cuentaCorriente": "NO",
+      "saldo": 1225.56
+    }
+  ],
+  "proveedores": [
+    {
+      "id": 1,
+      "nombre": "CELESTE Y BLANCA",
+      "apellido": "-",
+      "cuit": "45-85245678-3",
+      "correo": "johnDoe@gmail.com",
+      "rubro": "Libreria",
+      "cuentaCorriente": true,
+      "saldoEnCta": 155226.95
+    },
+    {
+      "id": 2,
+      "nombre": "RUBEN",
+      "apellido": "LENCINA",
+      "cuit": "45-85245678-3",
+      "correo": "johnDoe@gmail.com",
+      "rubro": "Bazar",
+      "cuentaCorriente": false,
+      "saldoEnCta": 0
+    },
+    {
+      "id": 3,
+      "nombre": "BAUTISTA",
+      "apellido": "FERNANDEZ",
+      "cuit": "45-85245678-3",
+      "correo": "johnDoe@gmail.com",
+      "rubro": "Jugueteria",
+      "cuentaCorriente": true,
+      "saldoEnCta": 77754.23
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "codBarra": "564545645654",
+      "nombre": "Lapiz",
+      "marca": "FaberCastell",
+      "rubro": "Libreria",
+      "idProveedor": 1,
+      "costo": 150,
+      "precio": 325,
+      "unidad": "C/U",
+      "stock": 50
+    },
+    {
+      "id": 2,
+      "codBarra": "5454587218574",
+      "nombre": "Cuaderno",
+      "marca": "Exito",
+      "rubro": "Libreria",
+      "idProveedor": 2,
+      "costo": 1225.5,
+      "precio": 1855.9,
+      "unidad": "C/U",
+      "stock": 30
+    },
+    {
+      "id": 3,
+      "codBarra": "1546788978977",
+      "nombre": "Goma",
+      "marca": "Maped",
+      "rubro": "Libreria",
+      "idProveedor": 3,
+      "costo": 25,
+      "precio": 50,
+      "unidad": "C/U",
+      "stock": 150
+    }
+  ],
+  "venta": [
+    {
+      "punto-venta": 1,
+      "num-comprobante": "564545645654",
+      "fecha-emision": "15/11/2023",
+      "ingresos-brutos": "23-39577924-9",
+      "inicio-actividades": "01/05/2023",
+      "dom-comercial": "Mariano Moreno 78",
+      "cond-iva": "Responsable Monotributo"
+    }
+  ],
+  "histventas": [
+    {
+      "num-comprobante": "000-001",
+      "fecha-emision": "20/11/2023",
+      "total": 14255.26,
+      "metodo-pago": "CONTADO"
+    }
+  ]
 }

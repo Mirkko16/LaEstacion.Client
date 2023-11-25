@@ -61,7 +61,7 @@ export default function AbmClientes() {
               <td className="text-center"><Link to={`${c.id}`}>{c.id}</Link></td>
               <td className="text-center">{c.nombre}</td>
               <td className="text-center">{c.apellido}</td>
-              <td className="text-center">{c.dni}</td>              
+              <td className="text-center">{c.dni}</td>
               <td className="text-center">{c.debe}</td>
               <td className="text-center">{c.haber}</td>
               <td className="text-center">{renderSymbol(c.activo)}</td>

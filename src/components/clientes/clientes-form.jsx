@@ -9,11 +9,18 @@ export function FormCliente() {
     id: -1,
     nombre: "",
     apellido: "",
+    dni: "",
     cuit: "",
     direccion: "",
+    localidad: "",
     telefono: "",
-    cuentaCorriente: "",
-    saldo: 0.0,
+    debe: 0.0,
+    haber: 0.0,
+    activo: false,
+    cuentaCorriente: false,
+    tarjetaSocio: false,
+    puntosTarjeta: 0,
+    numeroTarjeta: ""
   };
   const [cliente, setCliente] = useState(estadoInicial);
 
@@ -30,27 +37,22 @@ export function FormCliente() {
 
   const navigate = useNavigate();
 
-  function handleEditChange(e) {
+  const handleEditChange = (e) => {
     const { id, value, type, checked } = e.target;
-  
-    // Si es un checkbox, use checked directamente, de lo contrario, use value
     const newValue = type === 'checkbox' ? checked : value;
-  
-    setCliente((prevCliente) => ({
-      ...prevCliente,
-      [id]: newValue,
-    }));
-  }
+    setCliente((prevCliente) => ({ ...prevCliente, [id]: newValue }));
+  };
 
-  async function aceptarCambios() {
+  const aceptarCambios = async () => {
     if (cliente.id === -1) await agregar(cliente);
     else await modificar(cliente);
     navigate(-1);
-  }
+    setCliente((prevCliente) => ({ ...prevCliente, id: prevCliente.id === -1 ? -2 : -1 }));
+  };
 
-  function cancelarCambios() {
+  const cancelarCambios = () => {
     navigate(-1);
-  }
+  };
 
   if (error) {
     return <h1>Error:{error}</h1>;
@@ -59,105 +61,138 @@ export function FormCliente() {
   return (
     <div className="text-start col-6 offset-3 border p-3">
       <h2 className="mt-3 text-center">Datos del cliente</h2>
+
       <div className="mb-3 col-2">
         <label htmlFor="idCliente" className="form-label">
           Id
         </label>
-        <input
-          type="text"
-          className="form-control"
-          id="idCliente"
-          value={cliente.id}
-          readOnly={true}
-          disabled
-        />
+        <input type="text" className="form-control" id="idCliente" value={cliente.id} readOnly disabled />
       </div>
-      <div className="mb-3">
-        <label htmlFor="nombre" className="form-label">
-          Nombre Cliente
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="nombre"
-          value={cliente.nombre}
-          onChange={handleEditChange}
-        />
+
+      <div className="mb-3 row">
+        <div className="col">
+          <label htmlFor="nombre" className="form-label">
+            Nombre
+          </label>
+          <input type="text" className="form-control" id="nombre" value={cliente.nombre} onChange={handleEditChange} />
+        </div>
+
+        <div className="col">
+          <label htmlFor="apellido" className="form-label">
+            Apellido
+          </label>
+          <input type="text" className="form-control" id="apellido" value={cliente.apellido} onChange={handleEditChange} />
+        </div>
       </div>
-      <div className="mb-3">
-        <label htmlFor="apellido" className="form-label">
-          Apellido
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="apellido"
-          value={cliente.apellido}
-          onChange={handleEditChange}
-        />
+      <div className="mb-3 row">
+        <div className="col">
+          <label htmlFor="dni" className="form-label">
+            DNI
+          </label>
+          <input type="text" className="form-control" id="dni" value={cliente.dni} onChange={handleEditChange} />
+        </div>
+
+        <div className="col">
+          <label htmlFor="cuit" className="form-label">
+            CUIT
+          </label>
+          <input type="text" className="form-control" id="cuit" value={cliente.cuit} onChange={handleEditChange} />
+        </div>
       </div>
-      <div className="mb-3 col-2">
-        <label htmlFor="cuit" className="form-label">
-          Cuit/Cuil
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="cuit"
-          value={cliente.cuit}
-          onChange={handleEditChange}
-        />
+      <div className="mb-3 row">
+        <div className="col">
+          <label htmlFor="direccion" className="form-label">
+            Direccion
+          </label>
+          <input type="text" className="form-control" id="direccion" value={cliente.direccion} onChange={handleEditChange} />
+        </div>
+
+        <div className="col">
+          <label htmlFor="localidad" className="form-label">
+            Localidad
+          </label>
+          <input type="text" className="form-control" id="localidad" value={cliente.localidad} onChange={handleEditChange} />
+        </div>
       </div>
-      <div className="mb-3 col-2">
-        <label htmlFor="direccion" className="form-label">
-          Direccion
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="direccion"
-          value={cliente.direccion}
-          onChange={handleEditChange}
-        />
+      <div className="mb-3 row">
+        <div className="col">
+          <label htmlFor="telefono" className="form-label">
+            Telefono
+          </label>
+          <input type="text" className="form-control" id="telefono" value={cliente.telefono} onChange={handleEditChange} />
+        </div>
+        <div className="col">
+          <label htmlFor="numeroTarjeta" className="form-label">
+            Numero Tarjeta
+          </label>
+          <input type="text" className="form-control" id="numeroTarjeta" value={cliente.numeroTarjeta} onChange={handleEditChange} />
+        </div>
       </div>
-      <div className="mb-3 col-2">
-        <label htmlFor="telefono" className="form-label">
-          Telefono
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="telefono"
-          value={cliente.telefono}
-          onChange={handleEditChange}
-        />
+      <div className="mb-3 row">
+        <div className="col">
+          <label htmlFor="debe" className="form-label">
+            Debe
+          </label>
+          <input type="text" className="form-control" id="debe" value={cliente.debe} onChange={handleEditChange} />
+        </div>
+
+        <div className="col">
+          <label htmlFor="haber" className="form-label">
+            Haber
+          </label>
+          <input type="text" className="form-control" id="haber" value={cliente.haber} onChange={handleEditChange} />
+        </div>
       </div>
-      <div className="mb-3 col-2">
-        <label htmlFor="cuentaCorriente" className="form-label">
-          Cuenta Corriente
-        </label>
-        <select
-          className="form-select"
-          id="cuentaCorriente"
-          value={cliente.cuentaCorriente ? "SI" : "NO"}
-          onChange={handleEditChange}
-        >
-          <option value="si">Sí</option>
-          <option value="no">No</option>
-        </select>
+      <div className="mb-3 row">
+        <div className="col">
+          <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="activo"
+              name="activo"
+              checked={cliente.activo}
+              onChange={handleEditChange}
+            />
+            <label htmlFor="activo" className="form-check-label">
+              Activo
+            </label>
+          </div>
+        </div>
+
+        <div className="col">
+          <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="cuentaCorriente"
+              name="cuentaCorriente"
+              checked={cliente.cuentaCorriente}
+              onChange={handleEditChange}
+            />
+            <label htmlFor="cuentaCorriente" className="form-check-label">
+              Cuenta Corriente
+            </label>
+          </div>
+        </div>
+
+        <div className="col">
+          <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="tarjetaSocio"
+              name="tarjetaSocio"
+              checked={cliente.tarjetaSocio}
+              onChange={handleEditChange}
+            />
+            <label htmlFor="tarjetaSocio" className="form-check-label">
+              Tarjeta Socio
+            </label>
+          </div>
+        </div>
       </div>
-      <div className="mb-3 col-2">
-        <label htmlFor="saldo" className="form-label">
-          Saldo
-        </label>
-        <input
-          type="number"
-          className="form-control"
-          id="saldo"
-          value={cliente.saldo}
-          onChange={handleEditChange}
-        />
-      </div>
+
       <div className="mb-3 text-end">
         <button className="btn btn-primary me-1" onClick={aceptarCambios}>
           Aceptar

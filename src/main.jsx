@@ -25,15 +25,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='productos' element={<AbmProductos />} />
           <Route path='productos/agregar' element={<FormProducto />} />
           <Route path='productos/:id' element={<FormProducto />} />
-          
+
           {/* Formularios y abm Clientes */}
           <Route path='clientes' element={<AbmClientes />} />
           <Route path='clientes/agregar' element={<FormCliente />} />
           <Route path='clientes/:id' element={<FormCliente />} />
           {/* Formularios y abm Proveedores */}
-           <Route path='proveedores' element={<AbmProveedores />} />
+          <Route path='proveedores' element={<AbmProveedores />} />
           <Route path='proveedores/agregar' element={<FormProveedor />} />
-          <Route path='proveedores/:id' element={<FormProveedor />} /> 
+          <Route path='proveedores/:id' element={<FormProveedor />} />
         </Route>
         <Route path='opciones' element={<Opciones />} />
       </Route>

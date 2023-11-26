@@ -44,30 +44,32 @@ export default function AbmProductos() {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Cod.Barra</th>
             <th>Nombre</th>
+            <th>Cod.Barra</th>
             <th>Marca</th>
+            <th>Familia</th>
             <th>Rubro</th>
             <th>Proveedor</th>
             <th>Costo</th>
-            <th>Precio</th>
-            <th>Unidad</th>
+            <th>Rentabilidad</th>
+            <th>Precio Venta</th>
             <th>Stock</th>
-            <th>Acciones</th>
+            
           </tr>
         </thead>
         <tbody>
           {datos.map((p) => (
             <tr key={p.id}>
               <td><Link to={`${p.id}`}>{p.id}</Link></td>
-              <td>{p.codBarra}</td>
               <td>{p.nombre}</td>
-              <td>{p.marca}</td>
-              <td>{p.rubro}</td>
-              <td>{p.idProveedor}</td>
+              <td>{p.codBarra}</td>
+              <td>{p.marcaId}</td>
+              <td>{p.familiaId}</td>
+              <td>{p.rubroId}</td>
+              <td>{p.proveedorId}</td>
               <td>{p.costo}</td>
-              <td>{p.precio}</td>
-              <td>{p.unidad}</td>
+              <td>{p.rentabilidad}</td>
+              <td>{p.precioVenta}</td>
               <td>{p.stock}</td>
               <td>
                 <button className="btn btn-warning" onClick={() => editarProducto(p.id)}>Editar</button>

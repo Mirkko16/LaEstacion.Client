@@ -5,8 +5,20 @@ import { useNavigate, useParams } from "react-router-dom";
 export function FormProducto() {
   const [error, setError] = useState(null);
   const params = useParams();
-  const estadoInicial = { id: -1, codBarra: '', nombre: '', marca: '', rubro: '', idProveedor: -1, costo: 0.0,
-  precio: 0.0, unidad: '', stock:0.0};
+  const estadoInicial =
+  {
+    id: -1, 
+    nombre: '',
+    codBarra: '',
+    marcaId: '-1',
+    familiaId: '-1',
+    rubroId: '-1',
+    proveedorId: -1,
+    costo: 0.0,
+    rentabilidad: 0.0,
+    precio: 0.0,
+    stock: 0.0
+  };
   const [producto, setProducto] = useState(estadoInicial);
 
 
@@ -50,49 +62,54 @@ export function FormProducto() {
         <input type="text" className="form-control" id="id" value={producto.id} readOnly={true} disabled />
       </div>
       <div className="mb-3">
-        <label htmlFor="codBarra" className="form-label">Cod. Barra</label>
-        <input type="text" className="form-control"
-         id="codBarra" value={producto.codBarra} onChange={handleEditChange} />
-      </div>
-      <div className="mb-3">
         <label htmlFor="nombre" className="form-label">Nombre</label>
         <input type="text" className="form-control"
-         id="nombre" value={producto.nombre} onChange={handleEditChange} />
+          id="nombre" value={producto.nombre} onChange={handleEditChange} />
       </div>
-      <div className="mb-3 col-2">
-        <label htmlFor="marca" className="form-label">Marca</label>
+      <div className="mb-3">
+        <label htmlFor="codBarra" className="form-label">Cod. Barra</label>
         <input type="text" className="form-control"
-         id="marca" value={producto.marca} onChange={handleEditChange} />
+          id="codBarra" value={producto.codBarra} onChange={handleEditChange} />
       </div>
       <div className="mb-3 col-2">
-        <label htmlFor="rubro" className="form-label">Rubro</label>
-        <input type="text" className="form-control"
-         id="rubro" value={producto.rubro} onChange={handleEditChange} />
-      </div>
-      <div className="mb-3 col-2">
-        <label htmlFor="proveedor" className="form-label">Proveedor</label>
+        <label htmlFor="marcaId" className="form-label">Marca</label>
         <input type="number" className="form-control"
-         id="rubro" value={producto.idProveedor} onChange={handleEditChange} />
+          id="marcaId" value={producto.marcaId} onChange={handleEditChange} />
+      </div>
+      <div className="mb-3 col-2">
+        <label htmlFor="familiaId" className="form-label">Familia</label>
+        <input type="number" className="form-control"
+          id="familiaId" value={producto.familiaId} onChange={handleEditChange} />
+      </div>
+      <div className="mb-3 col-2">
+        <label htmlFor="rubroId" className="form-label">Rubro</label>
+        <input type="number" className="form-control"
+          id="rubroId" value={producto.rubroId} onChange={handleEditChange} />
+      </div>
+      <div className="mb-3 col-2">
+        <label htmlFor="proveedorId" className="form-label">Proveedor</label>
+        <input type="number" className="form-control"
+          id="proveedorId" value={producto.proveedorId} onChange={handleEditChange} />
       </div>
       <div className="mb-3 col-2">
         <label htmlFor="costo" className="form-label">Costo</label>
         <input type="number" className="form-control"
-         id="costo" value={producto.costo} onChange={handleEditChange} />
+          id="costo" value={producto.costo} onChange={handleEditChange} />
+      </div>
+      <div className="mb-3 col-2">
+        <label htmlFor="rentabilidad" className="form-label">Rentabilidad</label>
+        <input type="number" className="form-control"
+          id="rentabilidad" value={producto.rentabilidad} onChange={handleEditChange} />
       </div>
       <div className="mb-3 col-2">
         <label htmlFor="precio" className="form-label">Precio</label>
         <input type="number" className="form-control"
-         id="precio" value={producto.precio} onChange={handleEditChange} />
-      </div>
-      <div className="mb-3 col-2">
-        <label htmlFor="unidad" className="form-label">Unidad</label>
-        <input type="text" className="form-control"
-         id="unidad" value={producto.unidad} onChange={handleEditChange} />
+          id="precio" value={producto.precio} onChange={handleEditChange} />
       </div>
       <div className="mb-3 col-2">
         <label htmlFor="stock" className="form-label">Stock</label>
         <input type="number" className="form-control"
-         id="stock" value={producto.stock} onChange={handleEditChange} />
+          id="stock" value={producto.stock} onChange={handleEditChange} />
       </div>
       <div className="mb-3 text-end">
         <button className="btn btn-primary me-1" onClick={aceptarCambios}>Aceptar</button>

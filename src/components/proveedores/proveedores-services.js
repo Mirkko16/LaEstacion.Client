@@ -1,23 +1,22 @@
 import axios from "axios";
 
 export function getProveedores() {
-  return axios.get('http://localhost:3000/proveedores');
+  return axios.get('https://localhost:7295/api/proveedores');
 }
 
 export function getProveedor(id) {
-  return axios.get(`http://localhost:3000/proveedores/${id}`);
+  return axios.get(`https://localhost:7295/api/proveedores/${id}`);
 }
 
-export function agregar(nuevoProveedor) {
-  //nuevoAuto.id = autos.reduce((max, actual) => actual.id > max ? actual.id : max, 0) + 1;
-  //autos.push(nuevoAuto);
-  axios.post(`http://localhost:3000/proveedores`, {...nuevoProveedor, id:null});
+export function agregar(proveedorRequest) {
+  axios.post(`https://localhost:7295/api/proveedores`, {...proveedorRequest, id:null});
 }
 
 export function borrar(id) {
-  axios.delete(`http://localhost:3000/proveedores/${id}`);
+  axios.delete(`https://localhost:7295/api/proveedores/${id}`);
 }
 
 export function modificar(proveedor) {
-  axios.put(`http://localhost:3000/proveedores/${proveedor.id}`,proveedor);
+  console.log(proveedor);
+  axios.put(`https://localhost:7295/api/proveedores/`,proveedor);
 }

@@ -37,21 +37,24 @@ export default function AbmProveedores() {
     return <h1>Error:{error}</h1>
   }
 
+  const renderSymbol = (value) => (value ? '✔️' : '❌');
+
   return (
     <div className="container">
 
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>CUIT</th>
-            <th>Correo</th>
-            <th>Rubro</th>
-            <th>Cuenta Corriente</th>
-            <th>Saldo</th>
-            <th>Acciones</th>
+            <th className="text-center">Id</th>
+            <th className="text-center">Nombre</th>
+            <th className="text-center">Apellido</th>
+            <th className="text-center">CUIT</th>
+            <th className="text-center">Correo</th>
+            <th className="text-center">Telefono</th>
+            <th className="text-center">Debe</th>
+            <th className="text-center">Haber</th>
+            <th className="text-center">Saldo</th>
+            <th className="text-center">Activo</th>
           </tr>
         </thead>
         <tbody>
@@ -62,9 +65,11 @@ export default function AbmProveedores() {
               <td>{p.apellido}</td>
               <td>{p.cuit}</td>
               <td>{p.correo}</td>
-              <td>{p.rubro}</td>
-              <td>{p.cuentaCorriente}</td>
+              <td>{p.telefono}</td>
+              <td>{p.debe}</td>
+              <td>{p.haber}</td>
               <td>{p.saldo}</td>
+              <td className="text-center">{renderSymbol(p.activo)}</td>
               <td>
                 <button className="btn btn-warning" onClick={() => editarProveedor(p.id)}>Editar</button>
                 <button className="btn btn-danger ms-1" onClick={() => borrarProveedor(p.id)}>Borrar</button>

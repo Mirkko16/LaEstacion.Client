@@ -9,8 +9,7 @@ export function getCliente(id) {
 }
 
 export function agregar(clienteRequest) {
-  //nuevoAuto.id = autos.reduce((max, actual) => actual.id > max ? actual.id : max, 0) + 1;
-  //autos.push(nuevoAuto);
+
   axios.post(`https://localhost:7295/api/clientes`, {...clienteRequest, id:null});
 }
 

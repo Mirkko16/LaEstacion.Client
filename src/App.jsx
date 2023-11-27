@@ -16,9 +16,21 @@ function App() {
                   Datos
                 </a>
                 <ul className="dropdown-menu">
-                  <li><NavLink to="datos/productos" className="nav-link">Productos</NavLink></li>
                   <li><NavLink to="datos/clientes" className="nav-link">Clientes</NavLink></li>
                   <li><NavLink to="datos/proveedores" className="nav-link">Proveedores</NavLink></li>
+                </ul>
+              </li>
+
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Productos
+                </a>
+                <ul className="dropdown-menu">
+                  <li><NavLink to="datos/productos" className="nav-link">Productos</NavLink></li>
+                  <li><NavLink to="datos/proveedores" className="nav-link">Marcas</NavLink></li>
+                  <li><NavLink to="datos/proveedores" className="nav-link">Familias</NavLink></li>
+                  <li><NavLink to="datos/proveedores" className="nav-link">Rubros</NavLink></li>
+                  <li><NavLink to="datos/proveedores" className="nav-link">Stock</NavLink></li>
                 </ul>
               </li>
               

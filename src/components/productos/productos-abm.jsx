@@ -66,7 +66,7 @@ export default function AbmProductos() {
               <td>{p.marcaId}</td>
               <td>{p.familiaId}</td>
               <td>{p.rubroId}</td>
-              <td>{p.proveedorId}</td>
+              <td>{p.proveedor.nombre}</td>
               <td>{p.costo}</td>
               <td>{p.rentabilidad}</td>
               <td>{p.precioVenta}</td>

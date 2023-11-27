@@ -19,13 +19,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Routes>
       <Route path='/' element={<App />}>
         <Route index={true} element={<Home />} />
-        <Route path='about' element={<About />} />
-        <Route path='datos'>
+        <Route path='Productos'>
           {/* Formularios y abm productos */}
           <Route path='productos' element={<AbmProductos />} />
           <Route path='productos/agregar' element={<FormProducto />} />
           <Route path='productos/:id' element={<FormProducto />} />
-
+        </Route>
+        <Route path='datos'>
           {/* Formularios y abm Clientes */}
           <Route path='clientes' element={<AbmClientes />} />
           <Route path='clientes/agregar' element={<FormCliente />} />

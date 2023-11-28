@@ -63,9 +63,9 @@ export default function AbmProductos() {
               <td><Link to={`${p.id}`}>{p.id}</Link></td>
               <td>{p.nombre}</td>
               <td>{p.codBarra}</td>
-              <td>{p.marcaId}</td>
-              <td>{p.familiaId}</td>
-              <td>{p.rubroId}</td>
+              <td>{p.marca.nombre}</td>
+              <td>{p.familia.nombre}</td>
+              <td>{p.rubro.nombre}</td>
               <td>{p.proveedor.nombre}</td>
               <td>{p.costo}</td>
               <td>{p.rentabilidad}</td>

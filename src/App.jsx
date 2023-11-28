@@ -13,11 +13,18 @@ function App() {
               <li className="nav-item"><NavLink to="opciones" className="nav-link">Opciones</NavLink></li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Datos
+                  Clientes
                 </a>
                 <ul className="dropdown-menu">
-                  <li><NavLink to="datos/clientes" className="nav-link">Clientes</NavLink></li>
-                  <li><NavLink to="datos/proveedores" className="nav-link">Proveedores</NavLink></li>
+                  <li><NavLink to="/clientes" className="nav-link">Clientes</NavLink></li>
+                </ul>
+              </li>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Proveedores
+                </a>
+                <ul className="dropdown-menu">
+                  <li><NavLink to="/proveedores" className="nav-link">Proveedores</NavLink></li>
                 </ul>
               </li>
 
@@ -26,11 +33,11 @@ function App() {
                   Productos
                 </a>
                 <ul className="dropdown-menu">
-                  <li><NavLink to="datos/productos" className="nav-link">Productos</NavLink></li>
-                  <li><NavLink to="datos/proveedores" className="nav-link">Marcas</NavLink></li>
-                  <li><NavLink to="datos/proveedores" className="nav-link">Familias</NavLink></li>
-                  <li><NavLink to="datos/proveedores" className="nav-link">Rubros</NavLink></li>
-                  <li><NavLink to="datos/proveedores" className="nav-link">Stock</NavLink></li>
+                  <li><NavLink to="/productos/listado" className="nav-link">Listado</NavLink></li>
+                  <li><NavLink to="/productos/marcas" className="nav-link">Marcas</NavLink></li>
+                  <li><NavLink to="/productos/familias" className="nav-link">Familias</NavLink></li>
+                  <li><NavLink to="/productos/rubros" className="nav-link">Rubros</NavLink></li>
+                  <li><NavLink to="/productos/stock" className="nav-link">Stock</NavLink></li>
                 </ul>
               </li>
               

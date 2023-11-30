@@ -32,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='productos/listado/:id' element={<FormProducto />} />
         </Route>
         <Route path='Productos'>
-          {/* Formularios y abm productos */}
+          {/* Formularios y abm Marcas */}
           <Route path='marcas' element={<AbmMarcas />} />
           <Route path='marcas/agregar' element={<FormMarca />} />
           <Route path='marcas/:id' element={<FormMarca />} />

@@ -80,7 +80,7 @@ export default function AbmProductos() {
         </tbody>
       </table>
       <div>
-        <button className="btn btn-primary" onClick={() => navigate("agregar")}>Agregar</button>
+        <button className="btn btn-primary" onClick={() => navigate("/productos/agregar")}>Agregar</button>
       </div>
     </div>
   )

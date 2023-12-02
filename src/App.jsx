@@ -38,6 +38,7 @@ function App() {
                   <li><NavLink to="/productos/familias" className="nav-link">Familias</NavLink></li>
                   <li><NavLink to="/productos/rubros" className="nav-link">Rubros</NavLink></li>
                   <li><NavLink to="/productos/stock" className="nav-link">Stock</NavLink></li>
+                  <li><NavLink to="/productos/unidades" className="nav-link">Unidades</NavLink></li>
                 </ul>
               </li>
               

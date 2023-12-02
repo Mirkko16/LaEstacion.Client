@@ -17,6 +17,8 @@ import AbmFamilias from './components/familias/familias-abm.jsx'
 import { FormFamilia } from './components/familias/familias-form.jsx'
 import AbmRubros from './components/rubros/rubros-abm.jsx'
 import { FormRubro } from './components/rubros/rubros-form.jsx'
+import AbmUnidades from './components/unidades/unidades-abm.jsx'
+import { FormUnidad } from './components/unidades/unidades-form.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -56,6 +58,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='stock' element={<AbmRubros />} />
           <Route path='stock/agregar' element={<FormRubro />} />
           <Route path='stock/:id' element={<FormRubro />} />
+        </Route>
+
+        <Route path='Productos'>
+          {/* Formularios y abm productos */}
+          <Route path='unidades' element={<AbmUnidades/>} />
+          <Route path='unidades/agregar' element={<FormUnidad />} />
+          <Route path='unidades/:id' element={<FormUnidad />} />
         </Route>
         
         <Route path='/'>

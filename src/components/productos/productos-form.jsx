@@ -4,6 +4,7 @@ import { getMarcas } from "../marcas/marcas-services";
 import { getFamilias } from "../familias/familias-services";
 import { getRubros } from "../rubros/rubros-services";
 import { getProveedores } from "../proveedores/proveedores-services";
+import { getUnidades } from "../unidades/unidades-services";
 import { useNavigate, useParams } from "react-router-dom";
 
 export function FormProducto() {
@@ -14,6 +15,8 @@ export function FormProducto() {
   const [loadingFamilias, setLoadingFamilias] = useState(true);
   const [rubros, setRubros] = useState([]);
   const [loadingRubros, setLoadingRubros] = useState(true);
+  const [unidades, setUnidades] = useState([]);
+  const [loadingUnidades, setLoadingUnidades] = useState(true);
   const [proveedores, setProveedores] = useState([]);
   const [loadingProveedores, setLoadingProveedores] = useState(true);
 
@@ -26,6 +29,7 @@ export function FormProducto() {
     marcaId: "",
     familiaId: "",
     rubroId: "",
+    unidadId:"",
     proveedorId: "",
     costo: 0,
     rentabilidad: 0,
@@ -60,6 +64,10 @@ export function FormProducto() {
         const rubrosResp = await getRubros();
         setRubros(rubrosResp.data);
         setLoadingRubros(false);
+
+        const unidadesResp = await getUnidades();
+        setUnidades(unidadesResp.data);
+        setLoadingUnidades(false);
 
         const proveedoresResp = await getProveedores();
         setProveedores(proveedoresResp.data);
@@ -108,35 +116,50 @@ export function FormProducto() {
   }
 
   async function aceptarCambios() {
-    console.log(producto);
-
-    if (producto.id === -1) {
+    const {
+      id,
+      nombre,
+      codBarra,
+      marcaId,
+      familiaId,
+      rubroId,
+      unidadId,
+      proveedorId,
+      costo,
+      rentabilidad,
+      precioVenta,
+      stock,
+      eliminado
+    } = producto;
+  
+    const productoActualizado = {
+      id,
+      nombre,
+      codBarra,
+      marcaId: parseInt(marcaId, 10),
+      familiaId: parseInt(familiaId, 10),
+      rubroId: parseInt(rubroId, 10),
+      unidadId: parseInt(unidadId, 10),
+      proveedorId: parseInt(proveedorId, 10),
+      costo: parseFloat(costo), // Convertir a decimal
+      rentabilidad: parseFloat(rentabilidad), // Convertir a decimal
+      precioVenta: parseFloat(precioVenta), // Convertir a decimal
+      stock: parseFloat(stock), // Convertir a decimal
+      eliminado
+    };
+  
+    if (id === -1) {
       // Solo pasa las IDs de las entidades relacionadas, no los objetos completos
-      await agregar(producto);
+      await agregar(productoActualizado);
     } else {
-      // Extraer IDs de las entidades relacionadas y convertir a enteros si es necesario
-      const {
-        marcaId,
-        familiaId,
-        rubroId,
-        proveedorId,
-        ...productoSinEntidades
-      } = producto;
-
-      const ids = {
-        marcaId: parseInt(marcaId, 10),
-        familiaId: parseInt(familiaId, 10),
-        rubroId: parseInt(rubroId, 10),
-        proveedorId: parseInt(proveedorId, 10),
-      };
-
       // Eliminar propiedades innecesarias si no son necesarias para el servidor
-      await modificar({ ...productoSinEntidades, ...ids });
+      await modificar(productoActualizado);
     }
-
+  
     navigate(-1);
   }
-
+  
+  
   function cancelarCambios() {
     navigate(-1);
   }
@@ -245,6 +268,31 @@ export function FormProducto() {
                 {rubros.map((rubro) => (
                   <option key={rubro.id} value={rubro.id}>
                     {`${rubro.id} - ${rubro.nombre}`}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+
+        <div className="col">
+          <label htmlFor="unidadId" className="form-label">
+            Unidad
+          </label>
+          {loadingUnidades ? (
+            <p>Cargando unidades...</p>
+          ) : (
+            <div>
+              <select
+                className="form-select"
+                id="unidadId"
+                value={producto.unidadId}
+                onChange={(e) => handleEditChange(e)}
+              >
+                <option value="" disabled>Selecciona una unidad</option>
+                {unidades.map((unidad) => (
+                  <option key={unidad.id} value={unidad.id}>
+                    {`${unidad.id} - ${unidad.unidad}`}
                   </option>
                 ))}
               </select>

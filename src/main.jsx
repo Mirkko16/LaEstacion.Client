@@ -3,7 +3,6 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/home.jsx'
-import About from './components/about.jsx'
 import Opciones from './components/opciones.jsx'
 import AbmProductos from './components/productos/productos-abm.jsx'
 import AbmClientes from './components/clientes/clientes-abm.jsx'
@@ -19,6 +18,9 @@ import AbmRubros from './components/rubros/rubros-abm.jsx'
 import { FormRubro } from './components/rubros/rubros-form.jsx'
 import AbmUnidades from './components/unidades/unidades-abm.jsx'
 import { FormUnidad } from './components/unidades/unidades-form.jsx'
+import AbmVentas from './components/ventas/ventas-abm.jsx'
+import { FormVenta } from './components/ventas/ventas-form.jsx'
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -79,6 +81,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='proveedores/:id' element={<FormProveedor />} />
           
           
+        </Route>
+
+        <Route path='/'>
+          {/* Formularios y abm Ventas */}
+          <Route path='ventas' element={<AbmVentas />} />
+          <Route path='ventas/agregar' element={<FormVenta />} />
+          <Route path='ventas/:id' element={<FormVenta />} />
         </Route>
 
         <Route path='opciones' element={<Opciones />} />

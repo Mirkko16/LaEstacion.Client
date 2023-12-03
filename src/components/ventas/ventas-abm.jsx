@@ -1,5 +1,5 @@
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { borrar, getVentas } from "./ventas-services"
+import { getVentas } from "./ventas-services"
 import { useEffect, useState } from "react";
 
 
@@ -61,7 +61,7 @@ export default function AbmVentas() {
               <td className="text-center">{renderSymbol(v.activo)}</td>
               <td>
                 <button className="btn btn-warning" onClick={() => editarVenta(v.id)}>Editar</button>
-                <button className="btn btn-danger ms-1" onClick={() => borrarVenta(v.id)}>Borrar</button>
+                {/* <button className="btn btn-danger ms-1" onClick={() => borrarVenta(v.id)}>Borrar</button> */}
               </td>
             </tr>
           ))}

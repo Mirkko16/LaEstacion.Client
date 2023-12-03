@@ -52,7 +52,7 @@ export default function AbmUnidades() {
           {datos.map((u) => (
             <tr key={u.id}>
               <td className="text-center"><Link to={`${u.id}`}>{u.id}</Link></td>
-              <td className="text-center">{u.nombre}</td>
+              <td className="text-center">{u.unidad}</td>
               <td className="text-center">{renderSymbol(u.eliminada)}</td>
               <td>
                 <button className="btn btn-warning" onClick={() => editarUnidad(u.id)}>Editar</button>

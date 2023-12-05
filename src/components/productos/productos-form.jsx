@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { agregar, getProducto, modificar } from "./productos-service";
+import { ProductoModel } from "../models/producto-model";
 import { getMarcas } from "../marcas/marcas-services";
 import { getFamilias } from "../familias/familias-services";
 import { getRubros } from "../rubros/rubros-services";
@@ -22,20 +23,8 @@ export function FormProducto() {
 
 
   const params = useParams();
-  const estadoInicial = {
-    id: -1,
-    nombre: "",
-    codBarra: "",
-    marcaId: "",
-    familiaId: "",
-    rubroId: "",
-    unidadId:"",
-    proveedorId: "",
-    costo: 0,
-    rentabilidad: 0,
-    precioVenta: 0,
-    stock: 0,
-  };
+  const estadoInicial = new ProductoModel();
+
   const [producto, setProducto] = useState(estadoInicial);
   const [searchTermMarca, setSearchTermMarca] = useState("");
   const [searchTermFamilia, setSearchTermFamilia] = useState("");

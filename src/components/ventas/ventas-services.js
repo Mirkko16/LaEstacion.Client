@@ -12,3 +12,7 @@ export function agregar(ventaRequest) {
   axios.post(`https://localhost:7295/api/ventas`, {...ventaRequest, id:null});
 }
 
+export function modificar(venta) {
+  console.log(venta)
+  axios.put(`https://localhost:7295/api/ventas/`,venta);
+}

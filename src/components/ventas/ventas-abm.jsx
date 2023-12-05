@@ -14,21 +14,32 @@ export default function AbmVentas() {
     refrescarDatos();
   }, []);
 
-  function refrescarDatos(){
+  function refrescarDatos() {
     getVentas()
       .then((resp) => {
         if (resp.status === 200) {
           setDatos(resp.data);
         }
       })
-      .catch(reason => setError(reason.message))
+      .catch((error) => {
+        console.error('Error al obtener ventas:', error);
+        setError(error.message);
+      });
   }
+
+  const formatearFecha = (fechaVenta) => {
+    const date = new Date(fechaVenta);
+    const dia = date.getDate().toString().padStart(2, '0');
+    const mes = (date.getMonth() + 1).toString().padStart(2, '0');
+    const año = date.getFullYear().toString();
+    return `${dia}/${mes}/${año}`;
+  };
 
   if (error) {
     return <h1>Error:{error}</h1>
   }
 
-  // const renderSymbol = (value) => (value ? '✔️' : '❌');
+  
 
   return (
     <div className="container">
@@ -51,14 +62,12 @@ export default function AbmVentas() {
             <tr key={v.id}>
               <td><Link to={`${v.id}`}>{v.id}</Link></td>
               <td>{v.numVenta}</td>
-              <td>{v.puntoVenta}</td>
               <td>{v.cliente.nombre}</td>
               <td>{v.cliente.cuit}</td>
-              <td>{v.fecha}</td>
+              <td>{formatearFecha(v.fechaVenta)}</td>
               <td>{v.tipoPago}</td>
               <td>{v.tipoComprobante}</td>
               <td>{v.descuento}</td>
-              <td className="text-center">{renderSymbol(v.activo)}</td>
               <td>
                 <button className="btn btn-warning" onClick={() => editarVenta(v.id)}>Editar</button>
                 {/* <button className="btn btn-danger ms-1" onClick={() => borrarVenta(v.id)}>Borrar</button> */}

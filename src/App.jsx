@@ -48,7 +48,7 @@ function App() {
                   Ventas
                 </a>
                 <ul className="dropdown-menu">
-                  <li><NavLink to="/ventas/listado" className="nav-link">Listado</NavLink></li>
+                  <li><NavLink to="/ventas" className="nav-link">Listado</NavLink></li>
                   <li><NavLink to="/ventas/venta" className="nav-link">Ventas</NavLink></li>
                 </ul>
               </li>

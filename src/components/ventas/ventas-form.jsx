@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { agregar, getVenta } from "./ventas-services";
 import { VentaModel } from "../models/venta-model";
 import { getCliente } from "../clientes/clientes-services";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { Row, Col, Button } from 'react-bootstrap';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export function FormVenta() {
   const [error, setError] = useState(null);
@@ -37,7 +38,10 @@ export function FormVenta() {
           id: clienteEncontrado.id,
           nombre: clienteEncontrado.nombre,
           apellido: clienteEncontrado.apellido,
-          // Agrega otros campos según sea necesario
+          CUIT: clienteEncontrado.cuit,
+          direccion: clienteEncontrado.direccion,
+          localidad: clienteEncontrado.localidad,
+          numeroTarjeta: clienteEncontrado.numeroTarjeta,
         },
       }));
     } catch (error) {
@@ -46,26 +50,20 @@ export function FormVenta() {
     }
   };
 
-  const buscarClientePorNombre = async (nombreCliente) => {
-    try {
-      // Lógica para buscar cliente por nombre
-      // Actualizar el estado de venta con los datos del cliente encontrado
-    } catch (error) {
-      console.error("Error al buscar cliente por nombre:", error);
-      // Manejar el error según sea necesario
-    }
-  };
 
-  const handleClienteIdChange = (e) => {
+  const handleClienteIdChange = async (e) => {
     const { value } = e.target;
     setVenta((prevVenta) => ({ ...prevVenta, cliente: { id: value } }));
-    buscarClientePorId(value);
+    await buscarClientePorId(value);
   };
 
-  const handleClienteNombreChange = (e) => {
-    const { value } = e.target;
-    setVenta((prevVenta) => ({ ...prevVenta, cliente: { nombre: value } }));
-    buscarClientePorNombre(value);
+
+  const formatearFecha = (fechaVenta) => {
+    const date = new Date(fechaVenta);
+    const dia = date.getDate().toString().padStart(2, '0');
+    const mes = (date.getMonth() + 1).toString().padStart(2, '0');
+    const año = date.getFullYear().toString();
+    return `${dia}/${mes}/${año}`;
   };
 
   const handleEditChange = (e) => {
@@ -105,7 +103,7 @@ export function FormVenta() {
     0
 
   );
-  
+
 
   const aceptarCambios = async () => {
     if (venta.id === -1) await agregar(venta);
@@ -143,16 +141,22 @@ export function FormVenta() {
           <label htmlFor="fecha" className="form-label">
             Fecha
           </label>
-          <input type="text" className="form-control" id="fecha" value={venta.fechaVenta} readOnly disabled />
+          <input type="text" className="form-control" id="fecha" value={formatearFecha(venta.fechaVenta)} readOnly disabled />
         </Col>
         <Col xs={2}>
           <label htmlFor="clienteId" className="form-label">
             ID Cliente
           </label>
-          <input type="text" className="form-control" id="clienteId" name="id" />
+          <input
+            type="text"
+            className="form-control"
+            id="clienteId"
+            value={venta.cliente.id}
+            onChange={handleClienteIdChange}
+            name="id" />
         </Col>
-        <Col xs={3}>
-          <label htmlFor="clienteNombre" className="form-label">
+        <Col xs={3} className="d-flex align-items-center">
+          <label htmlFor="clienteNombre" className="form-label me-2">
             Cliente
           </label>
           <input
@@ -160,21 +164,26 @@ export function FormVenta() {
             className="form-control"
             id="clienteNombre"
             name="nombre"
-            value={venta.cliente?.nombre || ""}
+            value={`${venta.cliente.nombre ?? ''} ${venta.cliente.apellido ?? ''}`}
             readOnly
             disabled
           />
+          <Link to="/clientes">
+            <button className="btn btn-primary ms-2">
+              <i className="bi bi-search"></i> {/* Ajusta el icono según tu elección */}
+            </button>
+          </Link>
         </Col>
         <Col xs={3}>
-          <label htmlFor="clienteCUIT" className="form-label">
+          <label htmlFor="clienteCuit" className="form-label">
             CUIT
           </label>
           <input
             type="text"
             className="form-control"
-            id="clienteCUIT"
+            id="clienteCuit"
             name="cuit"
-            value={venta.cliente?.cuit || ""}
+            value={venta.cliente.CUIT || ""}
             readOnly
             disabled
           />
@@ -211,13 +220,13 @@ export function FormVenta() {
           />
         </Col>
         <Col xs={3}>
-          <label htmlFor="clienteNumTarjeta" className="form-label">
+          <label htmlFor="numeroTarjeta" className="form-label">
             N° Tarj.
           </label>
           <input
             type="text"
             className="form-control"
-            id="clienteNumTarjeta"
+            id="numeroTarjeta"
             name="numeroTarjeta"
             value={venta.cliente?.numeroTarjeta || ""}
             readOnly
@@ -231,20 +240,22 @@ export function FormVenta() {
           <label htmlFor="tipoPago" className="form-label">
             Tipo Pago
           </label>
-          <input type="text" className="form-control" id="tipoPago" name="tipoPago" value={venta.tipoPago} onChange={handleEditChange} />
+          <select className="form-select" aria-label="Default select example" id="tipoPago" name="tipoPago" value={venta.tipoPago} onChange={handleEditChange}>
+            <option selected>Contado</option>
+            <option value="1">Debito</option>
+            <option value="2">Tarj. Credito</option>
+            <option value="3">Cta. Corriente</option>
+          </select>
+          
         </Col>
         <Col>
           <label htmlFor="tipoComprobante" className="form-label">
             Tipo Comprobante
           </label>
-          <input
-            type="text"
-            className="form-control"
-            id="tipoComprobante"
-            name="tipoComprobante"
-            value={venta.tipoComprobante}
-            onChange={handleEditChange}
-          />
+          <select className="form-select" aria-label="Default select example" id="tipoPago" name="tipoPago" value={venta.tipoComprobante} onChange={handleEditChange}>
+            <option selected>A</option>
+            <option value="1">B</option>
+          </select>
         </Col>
         <Col>
           <label htmlFor="descuento" className="form-label">

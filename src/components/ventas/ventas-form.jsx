@@ -4,6 +4,7 @@ import { VentaModel } from "../models/venta-model";
 import { getCliente } from "../clientes/clientes-services";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { Row, Col, Button } from 'react-bootstrap';
+import { getProductobyBarCode } from "../productos/productos-service";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export function FormVenta() {
@@ -57,6 +58,54 @@ export function FormVenta() {
     await buscarClientePorId(value);
   };
 
+  const handleProductoInputChange = (index, e) => {
+    const { name, value } = e.target;
+    setVenta((prevVenta) => ({
+      ...prevVenta,
+      productos: prevVenta.productos.map((producto, i) =>
+        i === index ? { ...producto, [name]: value } : producto
+      ),
+    }));
+  };
+
+
+
+
+  const handleCodigoBarrasKeyDown = (e, index) => {
+    if (e.key === "Tab") {
+      const codigoBarras = e.target.value;
+      buscarProductoPorCodigoBarras(codigoBarras, index);
+    }
+  };
+
+  const buscarProductoPorCodigoBarras = async (codigoBarras, index) => {
+    try {
+      const response = await getProductobyBarCode(codigoBarras);
+
+      if (response.status === 200) {
+        const productoEncontrado = response.data;
+
+        setVenta((prevVenta) => ({
+          ...prevVenta,
+          productos: prevVenta.productos.map((producto, i) => {
+            if (i === index) {
+              return {
+                ...producto,
+                nombre: productoEncontrado.nombre,
+                precioVenta:productoEncontrado.precioVenta
+              };
+            }
+            return producto;
+          }),
+        }));
+      }
+    } catch (error) {
+      console.error("Error al buscar producto por código de barras:", error);
+      // Manejar el error según sea necesario
+    }
+  };
+
+
 
   const formatearFecha = (fechaVenta) => {
     const date = new Date(fechaVenta);
@@ -72,13 +121,7 @@ export function FormVenta() {
     setVenta((prevVenta) => ({ ...prevVenta, [id]: newValue }));
   };
 
-  // Manejar cambios en los campos del formulario para agregar un nuevo producto
-  const handleProductoInputChange = (index, e) => {
-    const { name, value } = e.target;
-    const nuevosProductos = [...venta.productos];
-    nuevosProductos[index] = { ...nuevosProductos[index], [name]: value };
-    setVenta((prevVenta) => ({ ...prevVenta, productos: nuevosProductos }));
-  };
+
 
   // Agregar un nuevo producto al array de productos
   const agregarProducto = () => {
@@ -99,7 +142,7 @@ export function FormVenta() {
 
   // Calcular el total de la venta
   const totalVenta = venta.productos.reduce(
-    (total, producto) => total + (parseFloat(producto.cantidad) * parseFloat(producto.precioUnitario)),
+    (total, producto) => total + (parseFloat(producto.cantidad) * parseFloat(producto.precioVenta)),
     0
 
   );
@@ -188,9 +231,6 @@ export function FormVenta() {
             disabled
           />
         </Col>
-      </Row>
-
-      <Row className="mb-3">
         <Col xs={4}>
           <label htmlFor="clienteDireccion" className="form-label">
             Dirección
@@ -219,6 +259,9 @@ export function FormVenta() {
             disabled
           />
         </Col>
+      </Row>
+
+      <Row className="mb-3">
         <Col xs={3}>
           <label htmlFor="numeroTarjeta" className="form-label">
             N° Tarj.
@@ -240,13 +283,19 @@ export function FormVenta() {
           <label htmlFor="tipoPago" className="form-label">
             Tipo Pago
           </label>
-          <select className="form-select" aria-label="Default select example" id="tipoPago" name="tipoPago" value={venta.tipoPago} onChange={handleEditChange}>
-            <option selected>Contado</option>
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            id="tipoPago"
+            name="tipoPago"
+            value={venta.tipoPago}
+            onChange={handleEditChange}
+          >
+            <option value="" defaultValue>Contado</option>
             <option value="1">Debito</option>
             <option value="2">Tarj. Credito</option>
             <option value="3">Cta. Corriente</option>
           </select>
-          
         </Col>
         <Col>
           <label htmlFor="tipoComprobante" className="form-label">
@@ -282,7 +331,18 @@ export function FormVenta() {
                 onChange={(e) => handleProductoInputChange(index, e)}
               />
             </Col>
-            <Col xs={4}>
+            <Col xs={2}>
+              <input
+                type="text"
+                name="codBarra"
+                value={producto.codBarra}
+                onChange={(e) => handleProductoInputChange(index, e)}
+                onKeyDown={(e) => handleCodigoBarrasKeyDown(e, index)}
+                placeholder="Cod. Barra"
+                className="form-control"
+              />
+            </Col>
+            <Col xs={2}>
               <input
                 type="text"
                 name="nombre"
@@ -295,12 +355,13 @@ export function FormVenta() {
             <Col>
               <input
                 type="text"
-                name="precioUnitario"
-                value={producto.precioUnitario}
+                name="precioVenta"
+                value={producto.precioVenta !== undefined ? producto.precioVenta.toString() : ''}
                 onChange={(e) => handleProductoInputChange(index, e)}
-                placeholder="Precio Unitario"
+                placeholder="precio de Venta"
                 className="form-control"
-                readOnly
+                disabled
+                
               />
             </Col>
             <Col xs={2}>

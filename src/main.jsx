@@ -3,7 +3,7 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/home.jsx'
-import Opciones from './components/opciones.jsx'
+import Administracion from './components/administracion.jsx'
 import AbmProductos from './components/productos/productos-abm.jsx'
 import AbmClientes from './components/clientes/clientes-abm.jsx'
 import { FormProducto } from './components/productos/productos-form.jsx'
@@ -92,7 +92,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='ventas/:id' element={<FormVenta />} />
         </Route>
 
-        <Route path='opciones' element={<Opciones />} />
+        <Route path='adminitracion' element={<Administracion />} />
       </Route>
     </Routes>
   </BrowserRouter>

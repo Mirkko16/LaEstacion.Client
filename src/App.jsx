@@ -10,7 +10,21 @@ function App() {
           <NavLink to="/" className="navbar-brand">Home</NavLink>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav">
-              <li className="nav-item"><NavLink to="opciones" className="nav-link">Opciones</NavLink></li>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Administracion
+                </a>
+                <ul className="dropdown-menu">
+                  <li><NavLink to="/usuarios/marcas" className="nav-link">Usuarios</NavLink></li>
+                  <li><NavLink to="/productos/marcas" className="nav-link">Marcas</NavLink></li>
+                  <li><NavLink to="/productos/familias" className="nav-link">Familias</NavLink></li>
+                  <li><NavLink to="/productos/rubros" className="nav-link">Rubros</NavLink></li>
+                  <li><NavLink to="/productos/stock" className="nav-link">Stock</NavLink></li>
+                  <li><NavLink to="/productos/unidades" className="nav-link">Unidades</NavLink></li>
+                </ul>
+              </li>
+
+
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Clientes
@@ -34,14 +48,10 @@ function App() {
                 </a>
                 <ul className="dropdown-menu">
                   <li><NavLink to="/productos/listado" className="nav-link">Listado</NavLink></li>
-                  <li><NavLink to="/productos/marcas" className="nav-link">Marcas</NavLink></li>
-                  <li><NavLink to="/productos/familias" className="nav-link">Familias</NavLink></li>
-                  <li><NavLink to="/productos/rubros" className="nav-link">Rubros</NavLink></li>
-                  <li><NavLink to="/productos/stock" className="nav-link">Stock</NavLink></li>
-                  <li><NavLink to="/productos/unidades" className="nav-link">Unidades</NavLink></li>
+
                 </ul>
               </li>
-              
+
               <hr />
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -20,6 +20,7 @@ import AbmUnidades from './components/unidades/unidades-abm.jsx'
 import { FormUnidad } from './components/unidades/unidades-form.jsx'
 import AbmVentas from './components/ventas/ventas-abm.jsx'
 import { FormVenta } from './components/ventas/ventas-form.jsx'
+import Login from './components/usuarios/login.jsx'
 
 
 
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   <BrowserRouter>
     <Routes>
+      <Route path='/login' element={<Login />} />
       <Route path='/' element={<App />}>
         <Route index={true} element={<Home />} />
         <Route path='/'>
@@ -64,11 +66,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path='Productos'>
           {/* Formularios y abm productos */}
-          <Route path='unidades' element={<AbmUnidades/>} />
+          <Route path='unidades' element={<AbmUnidades />} />
           <Route path='unidades/agregar' element={<FormUnidad />} />
           <Route path='unidades/:id' element={<FormUnidad />} />
         </Route>
-        
+
         <Route path='/'>
           {/* Formularios y abm Clientes */}
           <Route path='clientes' element={<AbmClientes />} />
@@ -79,8 +81,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='proveedores' element={<AbmProveedores />} />
           <Route path='proveedores/agregar' element={<FormProveedor />} />
           <Route path='proveedores/:id' element={<FormProveedor />} />
-          
-          
+
+
         </Route>
 
         <Route path='/'>

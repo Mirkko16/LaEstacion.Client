@@ -1,7 +1,6 @@
-// Login.jsx
 import React, { Component } from 'react';
 import { iniciarSesion } from './usuarios-services';
-import '../../styles/Login.css'
+import '../../styles/Login.css';
 
 class Login extends Component {
   constructor(props) {
@@ -11,23 +10,32 @@ class Login extends Component {
       password: '',
     };
   }
+
+  componentDidMount() {
+    // Agrega la clase al body cuando el componente se monta
+    document.body.classList.add('login-page');
+  }
+
+  componentWillUnmount() {
+    // Elimina la clase del body cuando el componente se desmonta
+    document.body.classList.remove('login-page');
+  }
+
   handleInputChange = (event) => {
-    const { name, value, type } = event.target;
+    const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   };
-
 
   handleLogin = async () => {
     const { username, password } = this.state;
 
     try {
       const response = await iniciarSesion({ username, password });
-      this.props.history.push('/home')
+      this.props.history.push('/home');
       console.log('Inicio de sesión exitoso:', response.data);
     } catch (error) {
-
       console.error('Error al iniciar sesión:', error.response.data);
     }
   };
@@ -39,7 +47,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="login-container">
         <form>
           <h1>Inicio de sesion</h1>
           <div className="inset">

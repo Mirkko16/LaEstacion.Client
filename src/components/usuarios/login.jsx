@@ -1,93 +1,83 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { iniciarSesion } from './usuarios-services';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/Login.css';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
+function Login() {
+  const [credentials, setCredentials] = useState({
+    username: '',
+    password: '',
+  });
 
-  componentDidMount() {
-    // Agrega la clase al body cuando el componente se monta
-    document.body.classList.add('login-page');
-  }
+  const navigate = useNavigate();
 
-  componentWillUnmount() {
-    // Elimina la clase del body cuando el componente se desmonta
-    document.body.classList.remove('login-page');
-  }
-
-  handleInputChange = (event) => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-    this.setState({
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
       [name]: value,
-    });
+    }));
   };
 
-  handleLogin = async () => {
-    const { username, password } = this.state;
-
+  const handleLogin = async () => {
+    const { username, password } = credentials;
+  
     try {
       const response = await iniciarSesion({ username, password });
-      this.props.history.push('/home');
+      navigate('/');
       console.log('Inicio de sesión exitoso:', response.data);
     } catch (error) {
       console.error('Error al iniciar sesión:', error.response.data);
+      alert('Credenciales incorrectas. Por favor, verifique su usuario y contraseña.');
     }
   };
 
-  handleForgotPassword = () => {
-    // Lógica para manejar el olvido de contraseña, por ejemplo, redirigir a la página de restablecimiento de contraseña.
+  const handleForgotPassword = () => {
     console.log('Forgot Password clicked');
   };
 
-  render() {
-    return (
-      <div className="login-container">
-        <form>
-          <h1>Inicio de sesion</h1>
-          <div className="inset">
-            <p>
-              <label htmlFor="username">USUARIO</label>
-              <input
-               type="text" 
-               name="username" 
-               id="username"
-               onChange={this.handleInputChange}
-               value={this.state.username} />
-            </p>
-            <p>
-              <label htmlFor="password">CONTRASEÑA</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                onChange={this.handleInputChange}
-                value={this.state.password } />
-            </p>
-          </div>
-          <p className="p-container">
-            <span>¿Olvido su contraseña?</span>
+  return (
+    <div className="login-container">
+      <form>
+        <h1>Inicio de sesion</h1>
+        <div className="inset">
+          <p>
+            <label htmlFor="username">USUARIO</label>
             <input
-              type="submit"
-              name="go"
-              id="go"
-              value="Log in"
-              onClick={(e) => {
-                e.preventDefault();
-                this.handleLogin();
-              }} />
+              type="text"
+              name="username"
+              id="username"
+              onChange={handleInputChange}
+              value={credentials.username}
+            />
           </p>
-        </form>
-      </div>
-    );
-  }
+          <p>
+            <label htmlFor="password">CONTRASEÑA</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleInputChange}
+              value={credentials.password}
+            />
+          </p>
+        </div>
+        <p className="p-container">
+          <span>¿Olvido su contraseña?</span>
+          <input
+            type="submit"
+            name="go"
+            id="go"
+            value="Log in"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLogin();
+            }}
+          />
+        </p>
+      </form>
+    </div>
+  );
 }
 
 export default Login;
-
-

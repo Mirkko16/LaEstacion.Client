@@ -9,7 +9,7 @@ export function FormUsuario() {
     id: -1,
     nombre: "",
     apellido: "",
-    userLogin: "",
+    username: "",
     password: "",
     correo: "",
     rol: "",
@@ -79,10 +79,10 @@ export function FormUsuario() {
       </div>
       <div className="mb-3 row">
         <div className="col">
-          <label htmlFor="userLogin" className="form-label">
-            User Login
+          <label htmlFor="username" className="form-label">
+            User Name
           </label>
-          <input type="text" className="form-control" id="userLogin" value={usuario.userLogin} onChange={handleEditChange} />
+          <input type="text" className="form-control" id="username" value={usuario.username} onChange={handleEditChange} />
         </div>
 
         <div className="col">
@@ -99,12 +99,19 @@ export function FormUsuario() {
           </label>
           <input type="text" className="form-control" id="correo" value={usuario.correo} onChange={handleEditChange} />
         </div>
-
         <div className="col">
           <label htmlFor="rol" className="form-label">
             Rol
           </label>
-          <input type="text" className="form-control" id="rol" value={usuario.rol} onChange={handleEditChange} />
+          <select
+            className="form-select"
+            id="rol"
+            value={usuario.rol}
+            onChange={handleEditChange}
+          >
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
         </div>
       </div>
       <div className="mb-3 row">

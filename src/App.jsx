@@ -15,7 +15,7 @@ function App() {
                   Administracion
                 </a>
                 <ul className="dropdown-menu">
-                  <li><NavLink to="/usuarios/marcas" className="nav-link">Usuarios</NavLink></li>
+                  <li><NavLink to="/usuarios" className="nav-link">Usuarios</NavLink></li>
                   <li><NavLink to="/productos/marcas" className="nav-link">Marcas</NavLink></li>
                   <li><NavLink to="/productos/familias" className="nav-link">Familias</NavLink></li>
                   <li><NavLink to="/productos/rubros" className="nav-link">Rubros</NavLink></li>

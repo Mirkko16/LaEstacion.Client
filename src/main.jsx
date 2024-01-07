@@ -20,7 +20,9 @@ import AbmUnidades from './components/unidades/unidades-abm.jsx'
 import { FormUnidad } from './components/unidades/unidades-form.jsx'
 import AbmVentas from './components/ventas/ventas-abm.jsx'
 import { FormVenta } from './components/ventas/ventas-form.jsx'
-import Login from './components/usuarios/login.jsx'
+import LoginForm from './components/usuarios/login.jsx'
+import { FormUsuario } from './components/usuarios/usuarios-form.jsx'
+import AbmUsuarios from './components/usuarios/usuarios-abm.jsx'
 
 
 
@@ -28,7 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   <BrowserRouter>
     <Routes>
-      <Route path='/login' element={<Login />} />
+      <Route path='/login' element={<LoginForm />} />
       <Route path='/' element={<App />}>
         <Route index={true} element={<Home />} />
         <Route path='/'>
@@ -90,6 +92,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='ventas' element={<AbmVentas />} />
           <Route path='ventas/agregar' element={<FormVenta />} />
           <Route path='ventas/:id' element={<FormVenta />} />
+        </Route>
+
+        <Route path='/'>
+          {/* Formularios y abm Usuarios */}
+          <Route path='usuarios' element={<AbmUsuarios />} />
+          <Route path='usuarios/agregar' element={<FormUsuario />} />
+          <Route path='usuarios/:id' element={<FormUsuario />} />
         </Route>
 
         <Route path='adminitracion' element={<Administracion />} />

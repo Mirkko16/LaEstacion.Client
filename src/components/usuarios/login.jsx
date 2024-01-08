@@ -25,7 +25,7 @@ function Login() {
     try {
       const response = await iniciarSesion({ username, password });
       navigate('/');
-      console.log('Inicio de sesión exitoso:', response.data);
+      console.log('Inicio de sesión exitoso:');
     } catch (error) {
       console.error('Error al iniciar sesión:', error.response.data);
       alert('Credenciales incorrectas. Por favor, verifique su usuario y contraseña.');
